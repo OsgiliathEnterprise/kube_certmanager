@@ -34,7 +34,7 @@ install:
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script:
-  - mv ../orchestration_csi ../tcharl.kube_cert_manager
+  - mv ../kube_certmanager ../tcharl.kube_cert_manager
   - travis_wait 50 tox -e test-exec -- --scenario-name kvm
 branches:
   only:
