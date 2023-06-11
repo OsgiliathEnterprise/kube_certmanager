@@ -10,46 +10,38 @@ dependency:
 driver:
   name: vagrant
   provider:
-    name: virtualbox
+    name: parallels
 platforms:
   - name: master.osgiliath.test
-    box: ${TESTBOX:-fedora/38-cloud-base}
+    box: ${TESTBOX:-bento/fedora-38-arm64}
     provider_options:
-      cpus: 4
+      cpus: 2
       memory: 5120
     interfaces:
       - type: dhcp
-        # ip: "192.168.56.5"
         auto_config: true
         network_name: private_network
-        virtualbox__intnet: "internalnetwork"
     groups:
       - kube_master
       - ipaservers
   - name: node1.osgiliath.test
-    box: ${TESTBOX:-fedora/38-cloud-base}
+    box: ${TESTBOX:-bento/fedora-38-arm64}
     provider_options:
       cpus: 2
       memory: 5120
-    groups:
-      - kube_node
     interfaces:
       - type: dhcp
-        # ip: "192.168.56.5"
         auto_config: true
         network_name: private_network
-        virtualbox__intnet: "internalnetwork"
+    groups:
+      - kube_node
 provisioner:
   name: ansible
-  options:
-    vvv: True
 #  config_options:
 #    defaults:
 #      forks: 20
-#      gather_timeout: 20
-#      timeout: 60
-#    ssh_connection:
-#      pipelining: true
+#   ssh_connection:
+#     pipelining: true
 #      ssh_args: -o ControlMaster=auto -o ControlPersist=6000s
 verifier:
   name: testinfra
@@ -58,7 +50,7 @@ verifier:
   options:
     v: 1
 scenario:
-  name: default
+  name: parallels
   test_sequence:
     - dependency
     - cleanup

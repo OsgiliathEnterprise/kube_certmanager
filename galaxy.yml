@@ -1,16 +1,16 @@
 ---
 namespace: "tcharl"
-name: "freeipa_server"
+name: "kube_certmanager"
 version: "1.0.1"
-description: "Role on top of the marvelous Freeipa server role to configure in compliancy with the Osgiliath platform topology"
+description: "Installs cert manager on kubernetes"
 
 authors:
   - "Charlie Mordant <cmordant1@gmail.com>"
 
-repository: "https://github.com/OsgiliathEnterprise/freeipa_server"
-documentation: "https://github.com/OsgiliathEnterprise/freeipa_server/blob/master/README.md"
-homepage: "https://github.com/OsgiliathEnterprise/freeipa_server"
-issues: "https://github.com/OsgiliathEnterprise/freeipa_server/issues"
+repository: "https://github.com/OsgiliathEnterprise/kube_certmanager"
+documentation: "https://github.com/OsgiliathEnterprise/kube_certmanager/blob/master/README.md"
+homepage: "https://github.com/OsgiliathEnterprise/kube_certmanager"
+issues: "https://github.com/OsgiliathEnterprise/kube_certmanager/issues"
 
 readme: "README.md"
 license:

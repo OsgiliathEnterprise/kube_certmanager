@@ -1,2 +1,6 @@
 ---
 
+
+- name: Requirements | install kubernetes cli
+  ansible.builtin.import_role:
+    name: tcharl.ansible_orchestration_cli

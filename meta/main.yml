@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: freeipa_server
+  role_name: kube_certmanager
   author: OsgiliathEnterprise
-  description: Wrapper role around freeipa-server role
+  description: Installs cert manager on top of the osgiliath orchestration stack
   company: Osgiliath
   namespace: tcharl
   # If the issue tracker for your role is not on github, uncomment the

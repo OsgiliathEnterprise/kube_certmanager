@@ -15,4 +15,4 @@
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
         standalone_role: True
-        kubernetes_allow_pods_on_master: Yes
+        kubernetes_allow_pods_on_master: False
