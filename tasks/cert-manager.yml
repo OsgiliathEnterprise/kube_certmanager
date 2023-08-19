@@ -1,0 +1,61 @@
+---
+
+- name: Cert-manager | Reference jetpack repository
+  kubernetes.core.helm_repository:
+    name: jetstack
+    repo_url: https://charts.jetstack.io
+    kubeconfig: /root/.kube/config
+  become: True
+
+- name: Cert-manager | Create cert-manager namespace
+  kubernetes.core.k8s:
+    name: cert-manager
+    kind: Namespace
+    state: present
+    wait_timeout: 200
+    wait_sleep: 20
+  register: lsresult
+  until: "lsresult is not failed"
+  retries: 5
+  delay: 10
+  become: True
+
+- name: Cert-manager | Create the cert-manager ca-bundle configmap
+  ansible.builtin.command: |
+    kubectl create configmap ca-bundle --from-file=/etc/pki/tls/certs/ca-bundle.crt -n cert-manager
+  register: result
+  changed_when: "'created' in result.stdout"
+  failed_when: False
+  become: True
+
+- name: Cert-manager | Create temporary directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: cert-manager
+  register: tempdir
+  become: True
+
+- name: Cert-manager | Copy the cert-manager values file
+  ansible.builtin.copy:
+    src: cert-manager-values.yml
+    dest: "{{ tempdir.path }}/cert-manager-values.yml"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+
+- name: Cert-manager | Deploy latest version of Certmanager
+  kubernetes.core.helm:
+    kubeconfig: /root/.kube/config
+    name: cert-manager
+    chart_ref: jetstack/cert-manager
+    release_namespace: cert-manager
+    chart_version: "{{ cert_manager_chart_version }}"
+    values_files:
+      - "{{ tempdir.path }}/cert-manager-values.yml"
+  register: lsresult
+  until: "lsresult is not failed"
+  failed_when: False
+  retries: 5
+  delay: 5
+  become: True

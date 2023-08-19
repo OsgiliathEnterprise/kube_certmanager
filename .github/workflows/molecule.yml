@@ -21,10 +21,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          path: tcharl.freeipa_server
+          path: tcharl.kube_certmanager
       - name: install prereq
         run: |
-          cd tcharl.freeipa_server
+          cd tcharl.kube_certmanager
           ansible-galaxy role install -r requirements-standalone.yml
           ansible-galaxy collection install -r requirements-collections.yml
   lint:

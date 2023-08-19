@@ -1,0 +1,13 @@
+installCRDs: true
+webhook:
+  hostNetwork: true
+  securePort: 10260
+volumeMounts:
+  - name: ca-bundle
+    mountPath: /etc/pki/tls/certs/ca-bundle.crt
+    subPath: ca-bundle.crt
+    readOnly: false
+volumes:
+  - name: ca-bundle
+    configMap:
+      name: ca-bundle

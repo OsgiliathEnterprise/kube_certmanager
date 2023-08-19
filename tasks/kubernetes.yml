@@ -1,0 +1,31 @@
+---
+
+- name: Kubernetes | Import tsig key as a secret
+  ansible.builtin.command: "kubectl -n cert-manager create secret generic ipa-tsig-secret --from-literal=tsig-secret-key=\"{{ tsig_key_value.msg }}\""
+  failed_when: false
+  register: result
+  changed_when: "'created' in result.stdout"
+  become: true
+
+- name: Kubernetes | Create temporary folder to copy issuer template
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: cluster-issuer
+  register: tempdir
+  become: True
+
+- name: Kubernetes | Copy the cert-manager values file
+  ansible.builtin.template:
+    src: acme_issuer/cluster-issuer.yml.j2
+    dest: "{{ tempdir.path }}/acme_issuer.yml"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+
+- name: Kubernetes | Apply issuer file
+  kubernetes.core.k8s:
+    state: present
+    apply: True
+    src: "{{ tempdir.path }}/acme_issuer.yml"
+  become: true

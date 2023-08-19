@@ -35,7 +35,7 @@ install:
 
 script:
   - mv ../kube_certmanager ../tcharl.kube_cert_manager
-  - travis_wait 50 tox -e test-exec -- --scenario-name kvm
+  - travis_wait 70 tox -e test-exec -- --scenario-name kvm
 branches:
   only:
     - master
