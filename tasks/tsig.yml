@@ -17,7 +17,7 @@
   become: yes
 
 - name: Idm | create tsig key
-  ansible.builtin.command: tsig-keygen -a hmac-sha512 acme-update
+  ansible.builtin.shell: tsig-keygen -a hmac-sha512 acme-update # noqa: command-instead-of-shell
   register: tsig_key_entry
   when: tsig_key_present.matched == 0
   become: yes
