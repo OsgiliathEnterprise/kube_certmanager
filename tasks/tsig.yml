@@ -18,6 +18,7 @@
 
 - name: Idm | create tsig key
   ansible.builtin.command: tsig-keygen -a hmac-sha512 acme-update
+  changed_when: false
   register: tsig_key_entry
   when: tsig_key_present.matched == 0
   become: yes
