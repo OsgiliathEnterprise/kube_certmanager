@@ -9,7 +9,10 @@
   when:
     - standalone_role
 
-- name: Get idm informations
+- name: Install certmanager cli
+  ansible.builtin.import_tasks: install-cmctl.yml
+
+- name: Get idm information
   ansible.builtin.include_tasks: ipa-facts.yml
   when: kube_masters_group | default("") | string in group_names
 

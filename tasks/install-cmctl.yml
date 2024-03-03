@@ -1,0 +1,45 @@
+---
+
+- name: Install-cmctl | Install golang
+  ansible.builtin.package:
+    name: golang
+    state: present
+  become: True
+
+- name: Get stats of a file
+  ansible.builtin.stat:
+    path: /usr/local/bin/cmctl
+  register: st
+  become: True
+
+- name: Install-cmctl | Get goOs
+  ansible.builtin.command: go env GOOS
+  register: goOs
+  when: not st.stat.exists
+
+- name: Install-cmctl | Get goArch
+  ansible.builtin.command: go env GOARCH
+  register: goArch
+  when: not st.stat.exists
+
+- name: Install-cmctl |  Create temporary folder to copy issuer template
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: cmctl
+  register: tempdir
+  when: not st.stat.exists
+
+- name: Install-cmctl | Download cmctl
+  ansible.builtin.get_url:
+    url: "https://github.com/cert-manager/cert-manager/releases/latest/download/cmctl-{{ goOs.stdout }}-{{ goArch.stdout }}.tar.gz"
+    dest: "{{ tempdir.path }}/cmctl.tar.gz"
+    mode: '0640'
+  when: not st.stat.exists
+
+- name: Install-cmctl | Extract cmctl
+  ansible.builtin.unarchive:
+    src: "{{ tempdir.path }}/cmctl.tar.gz"
+    dest: "/usr/local/bin"
+    remote_src: true
+    creates: "/usr/local/bin/cmctl"
+  become: True

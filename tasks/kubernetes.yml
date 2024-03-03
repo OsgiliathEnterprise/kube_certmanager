@@ -14,6 +14,11 @@
   register: tempdir
   become: True
 
+- name: Kubernetes | register ipa ca certificate
+  ansible.builtin.slurp:
+    src: /etc/pki/tls/certs/ca-bundle.crt
+  register: kube_certmanager_ipa_ca_bundle
+
 - name: Kubernetes | Copy the cert-manager values file
   ansible.builtin.template:
     src: acme_issuer/cluster-issuer.yml.j2
@@ -23,9 +28,20 @@
     mode: 0644
   become: True
 
+- name: Kubernetes | check certmanager api
+  ansible.builtin.command: cmctl check api
+  register: lsresult
+  until: lsresult.stdout.find("The cert-manager API is ready") != -1
+  retries: 5
+  delay: 10
+  become: True
+
 - name: Kubernetes | Apply issuer file
   kubernetes.core.k8s:
     state: present
+    namespace: cert-manager
     apply: True
     src: "{{ tempdir.path }}/acme_issuer.yml"
+  retries: 30
+  delay: 5
   become: true
