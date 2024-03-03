@@ -42,4 +42,5 @@
     dest: "/usr/local/bin"
     remote_src: true
     creates: "/usr/local/bin/cmctl"
+  when: not st.stat.exists
   become: True
