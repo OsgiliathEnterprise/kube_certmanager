@@ -65,4 +65,5 @@
   until: cmctlresult.stdout.find("The cert-manager API is ready") != -1
   retries: 26
   delay: 10
+  changed_when: False
   become: True

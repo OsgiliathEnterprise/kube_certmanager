@@ -12,14 +12,16 @@
   register: st
   become: True
 
-- name: Install-cmctl | Get goOs
+- name: Install-cmctl | Get goos
   ansible.builtin.command: go env GOOS
-  register: goOs
+  register: goos
+  changed_when: False
   when: not st.stat.exists
 
-- name: Install-cmctl | Get goArch
+- name: Install-cmctl | Get goarch
   ansible.builtin.command: go env GOARCH
-  register: goArch
+  register: goarch
+  changed_when: False
   when: not st.stat.exists
 
 - name: Install-cmctl |  Create temporary folder to copy issuer template
@@ -31,7 +33,7 @@
 
 - name: Install-cmctl | Download cmctl
   ansible.builtin.get_url:
-    url: "https://github.com/cert-manager/cert-manager/releases/download/{{ cert_manager_chart_version }}/cmctl-{{ goOs.stdout }}-{{ goArch.stdout }}.tar.gz"
+    url: "https://github.com/cert-manager/cert-manager/releases/download/{{ cert_manager_chart_version }}/cmctl-{{ goos.stdout }}-{{ goarch.stdout }}.tar.gz"
     dest: "{{ tempdir.path }}/cmctl.tar.gz"
     mode: '0640'
   when: not st.stat.exists
