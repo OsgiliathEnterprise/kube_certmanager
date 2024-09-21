@@ -28,14 +28,6 @@
     mode: 0644
   become: True
 
-- name: Kubernetes | check certmanager api
-  ansible.builtin.command: cmctl check api
-  register: lsresult
-  until: lsresult.stdout.find("The cert-manager API is ready") != -1
-  retries: 5
-  delay: 10
-  become: True
-
 - name: Kubernetes | Apply issuer file
   kubernetes.core.k8s:
     state: present

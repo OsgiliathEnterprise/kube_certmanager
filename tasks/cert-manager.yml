@@ -55,7 +55,14 @@
       - "{{ tempdir.path }}/cert-manager-values.yml"
   register: lsresult
   until: "lsresult is not failed"
-  failed_when: False
   retries: 5
   delay: 5
+  become: True
+
+- name: Cert-manager | check certmanager api
+  ansible.builtin.command: cmctl check api
+  register: cmctlresult
+  until: cmctlresult.stdout.find("The cert-manager API is ready") != -1
+  retries: 26
+  delay: 10
   become: True

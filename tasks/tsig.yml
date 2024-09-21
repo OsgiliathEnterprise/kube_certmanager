@@ -1,6 +1,6 @@
 ---
 
-- name: Idm | search for the tsig key
+- name: Tsig | search for the tsig key
   ansible.builtin.find:
     name: "/etc/named"
     patterns: "ipa-ext.conf"
@@ -11,19 +11,19 @@
   register: tsig_key_present
   become: yes
 
-- name: Idm | debug tsig key presence
+- name: Tsig | debug tsig key presence
   ansible.builtin.debug:
     msg: "tsig key present: {{ tsig_key_present }}"
   become: yes
 
-- name: Idm | create tsig key
+- name: Tsig | create tsig key
   ansible.builtin.command: tsig-keygen -a hmac-sha512 acme-update
   changed_when: false
   register: tsig_key_entry
   when: tsig_key_present.matched == 0
   become: yes
 
-- name: Idm | insert tsig key into ipa-ext.conf
+- name: Tsig | insert tsig key into ipa-ext.conf
   ansible.builtin.lineinfile:
     path: /etc/named/ipa-ext.conf
     line: "{{ tsig_key_entry.stdout }}"
