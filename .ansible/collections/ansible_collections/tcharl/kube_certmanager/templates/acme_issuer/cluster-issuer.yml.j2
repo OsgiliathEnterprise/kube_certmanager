@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ipa
+  namespace: cert-manager
+spec:
+  acme:
+    email: admin@{{ company_domain }}
+    server: https://ipa-ca.{{ company_domain }}/acme/directory
+    privateKeySecretRef:
+      name: ipa-issuer-account-key
+    solvers:
+      - dns01:
+          rfc2136:
+            nameserver: {{ kube_certmanager_ipa_current_host_ip.msg }}
+            tsigKeyName: acme-update
+            tsigAlgorithm: HMACSHA512
+            tsigSecretSecretRef:
+              name: ipa-tsig-secret
+              key: tsig-secret-key
+        selector:
+          dnsZones:
+            - '{{ company_domain }}'

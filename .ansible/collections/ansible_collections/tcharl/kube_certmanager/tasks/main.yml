@@ -1,0 +1,34 @@
+---
+# tasks file for ansible-users
+
+- name: Asserts
+  ansible.builtin.import_tasks: assert.yml
+
+- name: Requirements
+  ansible.builtin.import_tasks: requirements.yml
+  when:
+    - standalone_role
+
+- name: Install certmanager cli
+  ansible.builtin.import_tasks: install-cmctl.yml
+
+- name: Get idm information
+  ansible.builtin.include_tasks: ipa-facts.yml
+  when: kube_masters_group | default("") | string in group_names
+
+- name: Certmanager
+  ansible.builtin.import_tasks: cert-manager.yml
+  when: kube_masters_group | default("") | string in group_names
+
+- name: Create tsig key on idm side
+  ansible.builtin.import_tasks: idm.yml
+  run_once: true
+  when: idm_group | default("") | string in group_names
+
+- name: Get tsig informations
+  ansible.builtin.include_tasks: tsig-facts.yml
+  when: kube_masters_group | default("") | string in group_names
+
+- name: Create tsig key
+  ansible.builtin.include_tasks: kubernetes.yml
+  when: kube_masters_group | default("") | string in group_names

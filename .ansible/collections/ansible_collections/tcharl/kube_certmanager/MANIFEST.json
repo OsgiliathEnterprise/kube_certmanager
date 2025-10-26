@@ -1,0 +1,34 @@
+{
+ "collection_info": {
+  "namespace": "tcharl",
+  "name": "kube_certmanager",
+  "version": "1.0.1",
+  "authors": [
+   "Charlie Mordant <cmordant1@gmail.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "freeipa",
+   "freeipaserver",
+   "cloud"
+  ],
+  "description": "Installs cert manager on kubernetes",
+  "license": [
+   "Apache-2.0"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/OsgiliathEnterprise/kube_certmanager",
+  "documentation": "https://github.com/OsgiliathEnterprise/kube_certmanager/blob/master/README.md",
+  "homepage": "https://github.com/OsgiliathEnterprise/kube_certmanager",
+  "issues": "https://github.com/OsgiliathEnterprise/kube_certmanager/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "4cdeefed4879596b876ce1166343605c509afc5abc462c1b4e24e93a9915aeeb",
+  "format": 1
+ },
+ "format": 1
+}

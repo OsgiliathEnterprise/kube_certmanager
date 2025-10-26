@@ -1,0 +1,4 @@
+---
+
+- name: Idm | Generate and register TSIG key
+  ansible.builtin.import_tasks: tsig.yml

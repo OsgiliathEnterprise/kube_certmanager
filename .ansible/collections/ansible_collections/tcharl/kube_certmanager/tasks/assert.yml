@@ -1,0 +1,19 @@
+---
+- name: Ensure that `realm` infos is fed  correctly.
+  ansible.builtin.assert:
+    quiet: yes
+    that:
+      - company_realm_password is defined
+
+- name: Ensure that `company domain` infos is fed  correctly.
+  ansible.builtin.assert:
+    quiet: yes
+    that:
+      - company_domain is defined
+      - company_domain is string
+
+- name: Ensure that `company ad pwd` infos is fed correctly.
+  ansible.builtin.assert:
+    quiet: yes
+    that:
+      - company_ad_password is defined
