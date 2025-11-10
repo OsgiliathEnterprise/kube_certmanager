@@ -9,7 +9,7 @@
     idm_preferred_nic: "eth1"
     master_preferred_nic: "eth1"
     kubernetes_allow_pods_on_master: False
-    kube_firewall_zone: 'public'
+    kube_firewall_zone: 'internal'
     standalone_role: False
     company_domain: osgiliath.test
     company_realm_password: '123ADMin'

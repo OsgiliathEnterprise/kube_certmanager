@@ -8,7 +8,7 @@
     preferred_nic: "eth1"
     master_preferred_nic: "eth1"
     idm_preferred_nic: "eth1"
-    kube_firewall_zone: 'public'
+    kube_firewall_zone: 'internal'
     standalone_role: False
     reset_kube: True
     company_domain: osgiliath.test

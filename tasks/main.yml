@@ -4,11 +4,6 @@
 - name: Asserts
   ansible.builtin.import_tasks: assert.yml
 
-- name: Requirements
-  ansible.builtin.import_tasks: requirements.yml
-  when:
-    - standalone_role
-
 - name: Install certmanager cli
   ansible.builtin.import_tasks: install-cmctl.yml
 

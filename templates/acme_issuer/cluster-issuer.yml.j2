@@ -12,7 +12,7 @@ spec:
     solvers:
       - dns01:
           rfc2136:
-            nameserver: {{ kube_certmanager_ipa_current_host_ip.msg }}
+            nameserver: {{ kube_certmanager_ipa_current_host_ip }}
             tsigKeyName: acme-update
             tsigAlgorithm: HMACSHA512
             tsigSecretSecretRef:
