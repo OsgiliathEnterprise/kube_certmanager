@@ -39,7 +39,7 @@ install:
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script:
-  - mv ../kube_certmanager ../tcharl.kube_cert_manager
+  - mv ../kube_certmanager ../tcharl.kube_certmanager
   - uv tool run --python 3.13 --from ansible-core ansible-galaxy role install -r requirements-standalone.yml
   - uv tool run --python 3.13 --from ansible-core ansible-galaxy collection install -r requirements-collections.yml
   - travis_wait 70 uv tool run --python 3.13 --with tox tox -e test-exec -- --scenario-name kvm
