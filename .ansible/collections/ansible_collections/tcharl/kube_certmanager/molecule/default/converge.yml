@@ -1,15 +1,18 @@
 ---
 - name: Converge master
   hosts:
+    - ipaservers
     - kube_master
   vars:
     secure_logs: False
-    # preferred_nic: "eth1"
-    kube_firewall_zone: 'public'
-    master_preferred_nic: "eth1"
-    preferred_nic: "eth1"
     reset_kube: True
     standalone_role: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    # preferred_nic: "eth1"
+    kube_firewall_zone: 'internal'
+    master_preferred_nic: "ens5"
+    preferred_nic: "ens5"
     company_domain: osgiliath.test
     company_realm_password: '123ADMin'
     company_ad_password: '123ADmPass'

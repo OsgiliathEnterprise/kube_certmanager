@@ -5,13 +5,15 @@
     - kube_master
   vars:
     secure_logs: False
-    preferred_nic: "eth1"
-    idm_preferred_nic: "eth1"
-    master_preferred_nic: "eth1"
     kubernetes_allow_pods_on_master: False
-    kube_firewall_zone: 'internal'
+    #kube_firewall_zone: 'internal'
     standalone_role: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
     company_domain: osgiliath.test
+    preferred_nic: "enp0s5"
+    idm_preferred_nic: "enp0s5"
+    master_preferred_nic: "enp0s5"
     company_realm_password: '123ADMin'
     company_ad_password: '123ADmPass'
     reset_kube: True

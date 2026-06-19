@@ -33,7 +33,7 @@
 
 - name: Install-cmctl | Download cmctl
   ansible.builtin.get_url:
-    url: "https://github.com/cert-manager/cert-manager/releases/download/{{ cert_manager_chart_version }}/cmctl-{{ goos.stdout }}-{{ goarch.stdout }}.tar.gz"
+    url: "https://github.com/cert-manager/cmctl/releases/download/{{ cmtcl_version }}/cmctl_{{ goos.stdout }}_{{ goarch.stdout }}.tar.gz"
     dest: "{{ tempdir.path }}/cmctl.tar.gz"
     mode: '0640'
   when: not st.stat.exists

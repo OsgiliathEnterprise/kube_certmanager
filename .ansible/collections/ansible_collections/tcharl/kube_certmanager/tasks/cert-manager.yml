@@ -5,6 +5,7 @@
     name: jetstack
     repo_url: https://charts.jetstack.io
     kubeconfig: /root/.kube/config
+    force_update: true
   become: True
 
 - name: Cert-manager | Create cert-manager namespace

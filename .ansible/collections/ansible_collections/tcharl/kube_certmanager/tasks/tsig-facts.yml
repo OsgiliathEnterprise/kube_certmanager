@@ -3,15 +3,14 @@
 - name: TSIG-Facts | find ipa-ext.conf
   ansible.builtin.slurp:
     src: /etc/named/ipa-ext.conf
-  register: ipa_ext_file
   delegate_to: "{{ groups[idm_group] | first }}"
+  register: ipa_ext_file
   become: yes
 
 - name: TSIG-Facts | debug ipa-ext.conf
   ansible.builtin.debug:
     msg: "ipa_ext_file: {{ ipa_ext_file['content'] | b64decode }}"
     # verbosity: 2
-  become: yes
 
 - name: TSIG-Facts | debug tsig key value
   ansible.builtin.debug:

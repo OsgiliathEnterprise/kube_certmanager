@@ -11,20 +11,8 @@ driver:
   provider:
     name: parallels
 platforms:
-  - name: master.osgiliath.test
-    box: ${TESTBOX:-bento/fedora-42}
-    provider_options:
-      cpus: 2
-      memory: 5120
-    interfaces:
-      - type: dhcp
-        auto_config: true
-        network_name: private_network
-    groups:
-      - kube_master
-      - ipaclients
   - name: idm.osgiliath.test
-    box: ${TESTBOX:-bento/fedora-42}
+    box: ${TESTBOX:-bento/fedora-43}
     provider_options:
       cpus: 2
       memory: 5120
@@ -34,8 +22,8 @@ platforms:
         network_name: private_network
     groups:
       - ipaservers
-  - name: node1.osgiliath.test
-    box: ${TESTBOX:-bento/fedora-42}
+  - name: master.osgiliath.test
+    box: ${TESTBOX:-bento/fedora-43}
     provider_options:
       cpus: 2
       memory: 5120
@@ -44,10 +32,29 @@ platforms:
         auto_config: true
         network_name: private_network
     groups:
-      - kube_node
       - ipaclients
+      - kube_master
+  - name: node1.osgiliath.test
+    box: ${TESTBOX:-bento/fedora-43}
+    provider_options:
+      cpus: 2
+      memory: 5120
+    interfaces:
+      - type: dhcp
+        auto_config: true
+        network_name: private_network
+    groups:
+      - ipaclients
+      - kube_node
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_COLLECTIONS_PATH: "${MOLECULE_PROJECT_DIRECTORY}/../community-collections:${HOME}/.ansible/collections:/usr/share/ansible/collections"
+  options:
+    vvv: True
+  config_options:
+    defaults:
+      remote_tmp: /tmp
 #  config_options:
 #    defaults:
 #      forks: 20
