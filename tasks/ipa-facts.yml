@@ -5,7 +5,7 @@
     gather_subset:
       - network
   register: kube_certmanager_idm_host_facts
-  delegate_to: "{{ groups[idm_group] | first }}"
+  delegate_to: "{{ groups[idm_group][0] }}"
 
 - name: Facts | debug preferred_nic
   ansible.builtin.debug:
