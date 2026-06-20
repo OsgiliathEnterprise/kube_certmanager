@@ -66,6 +66,9 @@ provisioner:
     defaults:
       remote_tmp: /tmp
       forks: 20
+      timeout: 30
+    privilege_escalation:
+      become_timeout: 60
     ssh_connection:
       pipelining: true
       ssh_args: -4 -o ControlMaster=auto -o ControlPersist=600s
