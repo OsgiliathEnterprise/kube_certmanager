@@ -12,7 +12,6 @@
     msg: "{{ idm_preferred_nic | default(omit) }}"
     verbosity: 3
 
-
 - name: Facts | compute ip if preferred_nic is not set
   ansible.builtin.set_fact:
     kube_certmanager_ipa_current_host_ip: >-
