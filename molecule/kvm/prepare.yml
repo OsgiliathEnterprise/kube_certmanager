@@ -18,18 +18,6 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
-    - include_role:
-        name: tcharl.ansible_nameserver
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
 - name: Prepare IPA clients
   hosts:
     - master.osgiliath.test
@@ -51,6 +39,15 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
+  roles:
+    - role: geerlingguy.containerd
+  become: Yes
+- name: Register DNS
+  hosts:
+    - idm.osgiliath.test
+    - master.osgiliath.test
+    - node1.osgiliath.test
+  tasks:
     - include_role:
         name: tcharl.ansible_nameserver
       vars:
@@ -95,14 +92,6 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
-- name: configure containerization prereq # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
-  hosts: # use this order: master should be created before node
-    - master.osgiliath.test
-    - node1.osgiliath.test
-  roles:
-    - role: geerlingguy.containerd
-  become: Yes
-
 - name: configure kubernetes prereq # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
   hosts:
     - master.osgiliath.test
@@ -132,7 +121,7 @@
         company_ad_password: '123ADmPass'
 - name: Install kube cli
   hosts:
-      - node1.osgiliath.test
+      - master.osgiliath.test
   tasks:
     - include_role:
         name: tcharl.ansible_orchestration_cli

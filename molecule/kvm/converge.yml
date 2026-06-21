@@ -1,8 +1,9 @@
 ---
 - name: Converge master
   hosts:
-    - ipaservers
-    - kube_master
+    - idm.osgiliath.test
+    - master.osgiliath.test
+    - node1.osgiliath.test
   vars:
     secure_logs: False
     standalone_role: False
@@ -27,8 +28,7 @@
             kubernetes_volumes:
               - subtree: /artefactrepo
                 mountsize: 1
-
-  #        kube_alt_names:
+#        kube_alt_names:
 #          - "kubeadm.osgiliath.net"
   roles:
     - role: tcharl.kube_certmanager
