@@ -7,6 +7,8 @@ dependency:
     requirements-file: requirements-collections.yml
 driver:
   name: vagrant
+  ssh_connection_options:
+    - ' -4 -o ControlMaster=auto -o ControlPersist=600s -o ConnectTimeout=60 -o ConnectionAttempts=10'
   provider:
     name: libvirt
 platforms:
@@ -21,9 +23,9 @@ platforms:
     interfaces:
       - auto_config: true
         network_name: private_network
-#        type: dhcp
-        type: static
-        ip: "192.168.50.4"
+        type: dhcp
+        # type: static
+        # ip: "192.168.50.4"
     groups:
       - ipaservers
   - name: master.osgiliath.test
@@ -37,9 +39,9 @@ platforms:
     interfaces:
       - auto_config: true
         network_name: private_network
-        # type: dhcp
-        type: static
-        ip: "192.168.50.5"
+        type: dhcp
+        # type: static
+        # ip: "192.168.50.5"
     groups:
       - kube_master
       - ipaclients
@@ -54,9 +56,9 @@ platforms:
     interfaces:
       - auto_config: true
         network_name: private_network
-        # type: dhcp
-        type: static
-        ip: "192.168.50.6"
+        type: dhcp
+        #type: static
+        #ip: "192.168.50.6"
     groups:
       - ipaclients
       - kube_node
@@ -65,7 +67,6 @@ provisioner:
   env:
     ANSIBLE_COLLECTIONS_PATH: "${MOLECULE_PROJECT_DIRECTORY}/../community-collections:${HOME}/.ansible/collections:/usr/share/ansible/collections"
     ANSIBLE_VERBOSITY: 2
-    ANSIBLE_SSH_ARGS: " -4 -o ControlMaster=auto -o ControlPersist=600s -o ConnectTimeout=60 -o ConnectionAttempts=10"
   config_options:
     defaults:
       remote_tmp: /tmp
@@ -75,7 +76,6 @@ provisioner:
       become_timeout: 60
     ssh_connection:
       pipelining: true
-      # ssh_args: -4 -o ControlMaster=auto -o ControlPersist=600s
 verifier:
   name: testinfra
   env:
