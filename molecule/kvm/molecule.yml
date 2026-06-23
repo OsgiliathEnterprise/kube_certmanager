@@ -8,7 +8,12 @@ dependency:
 driver:
   name: vagrant
   ssh_connection_options:
-    - ' -4 -o ControlMaster=auto -o ControlPersist=600s -o ConnectTimeout=60 -o ConnectionAttempts=10'
+    - '-4'
+    - '-o ControlMaster=auto'
+    - '-o ControlPersist=600s'
+    - '-o ConnectTimeout=60'
+    - '-o ControlPath=~/.ansible/cp/molecule-%r@%h-%p'
+    - '-o ConnectionAttempts=10'
   provider:
     name: libvirt
 platforms:
