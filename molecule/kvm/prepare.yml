@@ -63,6 +63,15 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
+- name: Echo ping on IDM
+  hosts:
+    - idm.osgiliath.test
+  tasks:
+    - name: "echo ping on IDM"
+      ansible.builtin.raw: echo "ping"
+      changed_when: false
+      become: true
+
 - name: Prepare NFS server on Master
   hosts:
     - master.osgiliath.test
@@ -79,6 +88,15 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
+- name: Echo ping on IDM
+  hosts:
+    - idm.osgiliath.test
+  tasks:
+    - name: "echo ping on IDM"
+      ansible.builtin.raw: echo "ping"
+      changed_when: false
+      become: true
+
 - name: Prepare NFS client on Node
   hosts:
     - node1.osgiliath.test
@@ -113,6 +131,14 @@
   roles:
     - role: geerlingguy.containerd
   become: True
+- name: Echo ping on IDM
+  hosts:
+    - idm.osgiliath.test
+  tasks:
+    - name: "echo ping on IDM"
+      ansible.builtin.raw: echo "ping"
+      changed_when: false
+      become: true
 
 - name: Prepare Kubernetes
   hosts:
@@ -132,6 +158,14 @@
         master_preferred_nic: "ens5"
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
+- name: Echo ping on IDM
+  hosts:
+    - idm.osgiliath.test
+  tasks:
+    - name: "echo ping on IDM"
+      ansible.builtin.raw: echo "ping"
+      changed_when: false
+      become: true
 
 - name: Install kube cli
   hosts:
