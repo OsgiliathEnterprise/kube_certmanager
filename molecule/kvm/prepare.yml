@@ -136,7 +136,7 @@
 
 - name: Install kube cli
   hosts:
-      - master.osgiliath.test
+    - master.osgiliath.test
   tasks:
     - include_role:
         name: tcharl.ansible_orchestration_cli
@@ -151,3 +151,7 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
+- name: Install kube cli
+  hosts: all
+  tasks:
+    ansible.builtin.meta: reset_connection
