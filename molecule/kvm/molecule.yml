@@ -12,7 +12,7 @@ driver:
     - '-o ControlMaster=auto'
     - '-o ControlPersist=600s'
     - '-o ConnectTimeout=60'
-    - '-o ControlPath=/tmp/m-%r@%h-%p'
+#    - '-o ControlPath=/tmp/m-%r@%h-%p'
     - '-o ConnectionAttempts=10'
     - '-o ServerAliveInterval=30'
     - '-o ServerAliveCountMax=5'
