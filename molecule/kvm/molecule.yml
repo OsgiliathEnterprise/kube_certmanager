@@ -14,6 +14,9 @@ driver:
     - '-o ConnectTimeout=60'
     - '-o ControlPath=/tmp/m-%r@%h-%p'
     - '-o ConnectionAttempts=10'
+    - '-o ServerAliveInterval=30'
+    - '-o ServerAliveCountMax=5'
+    - '-o TCPKeepAlive=yes'
   provider:
     name: libvirt
 platforms:
