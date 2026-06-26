@@ -1,15 +1,4 @@
 ---
-- name: Pre Converge
-  hosts: all
-  gather_facts: false # Disable automatic fact gathering here!
-  tasks:
-    - name: Wait for nodes to be reachable before proceeding
-      ansible.builtin.wait_for_connection:
-        timeout: 120
-        sleep: 5
-
-    - name: Gather Facts manually now that network is stable
-      ansible.builtin.setup:
 - name: Converge master
   hosts:
     - idm.osgiliath.test

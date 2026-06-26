@@ -151,8 +151,3 @@
         company_domain: osgiliath.test
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
-- name: Install kube cli
-  hosts: all
-  tasks:
-    - name: "Rest ssh connection to all hosts to avoid ssh connection issues after installing the orchestration cli"
-      ansible.builtin.meta: reset_connection
