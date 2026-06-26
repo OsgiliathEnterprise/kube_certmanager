@@ -8,7 +8,7 @@ dependency:
 driver:
   name: vagrant
   ssh_connection_options:
-    - '-4'
+   # - '-4'
     - '-o ControlMaster=auto'
     - '-o ControlPersist=600s'
     - '-o ConnectTimeout=60'
