@@ -25,8 +25,8 @@ platforms:
     box_url: ${TESTBOX_URL:-https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-libvirt-44-1.7.x86_64.vagrant.libvirt.box}
     provider_options:
       driver: "kvm"
-      cpus: 3
-      memory: 5120
+      cpus: 1
+      memory: 4096
       qemu_use_session: false
     interfaces:
       - auto_config: true
@@ -41,8 +41,8 @@ platforms:
     box_url: ${TESTBOX_URL:-https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-libvirt-44-1.7.x86_64.vagrant.libvirt.box}
     provider_options:
       driver: "kvm"
-      cpus: 3
-      memory: 6144
+      cpus: 2
+      memory: 4096
       qemu_use_session: false
     interfaces:
       - auto_config: true
@@ -58,8 +58,8 @@ platforms:
     box_url: ${TESTBOX_URL:-https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-libvirt-44-1.7.x86_64.vagrant.libvirt.box}
     provider_options:
       driver: "kvm"
-      cpus: 2
-      memory: 5120
+      cpus: 1
+      memory: 3072
       qemu_use_session: false
     interfaces:
       - auto_config: true

@@ -1,8 +1,6 @@
 ---
 
 dist: noble
-vm:
-  size: "x-large"
 language: python
 python:
   - "3.13"
