@@ -46,6 +46,7 @@
         standalone_role: False
         secure_logs: False
         skip_hostname_assert: True
+        skip_nameserver_assert: True
         preferred_nic: "ens5"
         idm_preferred_nic: "ens5"
         company_domain: osgiliath.test
