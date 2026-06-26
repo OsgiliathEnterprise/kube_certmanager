@@ -10,9 +10,9 @@
     skip_hostname_assert: True
     skip_nameserver_assert: True
     reset_kube: True
-    preferred_nic: "ens5"
-    master_preferred_nic: "ens5"
-    idm_preferred_nic: "ens5"
+    preferred_nic: "ens6"
+    master_preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
     kube_firewall_zone: 'internal'
     company_domain: osgiliath.test
     company_realm_password: '123ADMin'
