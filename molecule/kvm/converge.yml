@@ -3,7 +3,7 @@
   hosts: all
   vars:
     secure_logs: False
-    standalone_role: False
+    standalone_role: True
     skip_hostname_assert: True
     skip_nameserver_assert: True
     reset_kube: True

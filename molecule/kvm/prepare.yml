@@ -99,6 +99,14 @@
         company_realm_password: '123ADMin'
         company_ad_password: '123ADmPass'
 
+- name: configure containerization prereq # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
+  hosts: # use this order: master should be created before node
+    - master.osgiliath.test
+    - node1.osgiliath.test
+  roles:
+    - role: geerlingguy.containerd
+  become: True
+
 - name: configure swap # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
   hosts:
     - master.osgiliath.test
@@ -109,13 +117,6 @@
     - role: geerlingguy.swap
   become: True
 
-- name: configure containerization prereq # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
-  hosts: # use this order: master should be created before node
-    - master.osgiliath.test
-    - node1.osgiliath.test
-  roles:
-    - role: geerlingguy.containerd
-  become: True
 - name: Prepare Kubernetes
   hosts:
     - master.osgiliath.test
