@@ -9,8 +9,8 @@ driver:
   name: vagrant
   ssh_connection_options:
     - '-4'
-    - '-o ControlMaster=auto'
-    - '-o ControlPersist=600s'
+    #- '-o ControlMaster=auto'
+    #- '-o ControlPersist=600s'
     - '-o ConnectTimeout=60'
 #    - '-o ControlPath=/tmp/m-%r@%h-%p'
     - '-o ConnectionAttempts=30'
