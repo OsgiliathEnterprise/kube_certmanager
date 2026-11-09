@@ -64,9 +64,7 @@ provisioner:
     ANSIBLE_VERBOSITY: 2
   config_options:
     defaults:
-      timeout: 60
       remote_tmp: /tmp
-      forks: 20
     ssh_connection:
       pipelining: true
 verifier:

@@ -66,8 +66,8 @@ platforms:
       - auto_config: true
         network_name: private_network
         type: dhcp
-        #type: static
-        #ip: "192.168.50.6"
+        # type: static
+        # ip: "192.168.50.6"
     groups:
       - ipaclients
       - kube_node
@@ -75,17 +75,14 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_COLLECTIONS_PATH: "${MOLECULE_PROJECT_DIRECTORY}/../community-collections:${HOME}/.ansible/collections:/usr/share/ansible/collections"
-    # ANSIBLE_VERBOSITY: 2
+    ANSIBLE_VERBOSITY: 2
   config_options:
     defaults:
       remote_tmp: /tmp
       forks: 20
       timeout: 60
-    privilege_escalation:
-      become_timeout: 60
     ssh_connection:
       pipelining: true
-      # ssh_args: -4 -o ControlMaster=auto -o ControlPersist=600s
 verifier:
   name: testinfra
   env:
