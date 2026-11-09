@@ -46,14 +46,14 @@
    "name": "tasks/tsig.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "731cf4715f77872e2e4823980f61fd5548c641669162ccbf4794cb172c8735fa",
+   "chksum_sha256": "a02d42fed079535d97b5f6559050c45f6d5945e7355bdfe845e29285db98d93a",
    "format": 1
   },
   {
    "name": "tasks/ipa-facts.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "0d9a58e4c294549f8ebc0d5d00e3fef68a4a710983594168c27708c32899782f",
+   "chksum_sha256": "1f7e02961192bb81f4a42a05d08d971fb96b5fc69175a9a6ea81a0a1ac56f669",
    "format": 1
   },
   {
@@ -81,7 +81,7 @@
    "name": "tasks/tsig-facts.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "fac179fcb84713fc0f25585de53a633168947efc122e5e539856fc22be4b7d19",
+   "chksum_sha256": "4e171391cccd348948bdbbf8655db38e7ac1f1fd757ddf47a94dbd13f1cfc968",
    "format": 1
   },
   {
@@ -221,7 +221,7 @@
    "name": "defaults/main.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "4bbaba2cbc0bb1c47af5e58ff386b65559ed13ed849dc46ba47ddf8659a3b04b",
+   "chksum_sha256": "7732b585fa9d302ac4766703cf5ef8561c3f81dfd1bee63a5140a65db315905c",
    "format": 1
   },
   {
@@ -340,7 +340,7 @@
    "name": "tox.ini",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "c9bc1f2423c55b54e2c92537e649c54ccdd2ce142472407ed91ee5359eeb1cec",
+   "chksum_sha256": "c5c946a97be7d0e405fdf16e58bbe3d241da18e4c4b0e12590d4eef057d9a59a",
    "format": 1
   },
   {
@@ -529,7 +529,7 @@
    "name": "molecule/default/molecule.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "556db5261b192cee1682471ba8debadeea95509a6629d7d8e05a8bb80bd8d59b",
+   "chksum_sha256": "b38adaf09d360ef0a1a272a054be3513ba3a6355456d3bb8de076849da00d8da",
    "format": 1
   },
   {
@@ -557,21 +557,14 @@
    "name": "molecule/default/converge.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "4bb80c7cc931fa01d45edbaffa1686a45ca701b2fe328891bc03a8f28805111d",
-   "format": 1
-  },
-  {
-   "name": "molecule/default/ansible.cfg",
-   "ftype": "file",
-   "chksum_type": "sha256",
-   "chksum_sha256": "92f3ca7e8ed7300f74247461e8789d821ae9d57fa557b2f7bcea778867a1f291",
+   "chksum_sha256": "0e43a62b89e1ac2a69d1f3b7a8944209cc8147fe8f5147426ddcc996c2629b73",
    "format": 1
   },
   {
    "name": "molecule/default/prepare.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "be76c609a9d01e10445c4728dc7e9a04d6a51c483a87672dc46eb0fead2c93e6",
+   "chksum_sha256": "f45f34fe01850cb6685666a531059936a053738579178717a31bb7be25e27e4e",
    "format": 1
   },
   {
@@ -585,7 +578,7 @@
    "name": "molecule/parallels/molecule.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "4a5e5494688728427776f349f19ac9817f4951f10c7864ca6b0a8da99c45d6ab",
+   "chksum_sha256": "7d6a8bcc5b391e34dabe8f9c0d7733f2068e3bdf21eb3eef53aca7403e5c35d6",
    "format": 1
   },
   {
@@ -599,21 +592,14 @@
    "name": "molecule/parallels/converge.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "7b91caa351bbb3c50aef9ea1d5c13d92a71aab5b8de0fe50c745fb7bbcb6f71f",
-   "format": 1
-  },
-  {
-   "name": "molecule/parallels/ansible.cfg",
-   "ftype": "file",
-   "chksum_type": "sha256",
-   "chksum_sha256": "92f3ca7e8ed7300f74247461e8789d821ae9d57fa557b2f7bcea778867a1f291",
+   "chksum_sha256": "c59634432db49a5f4f8e0171630dd7bda7ca1962c1b2406dcb05afe1e476c136",
    "format": 1
   },
   {
    "name": "molecule/parallels/prepare.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "ec58742332697ef8c593ebc92d9a91a8d4dfedc4b4e4a8c0d2b2fecd114edd3f",
+   "chksum_sha256": "118818703f9113ad2a655f594f8deb3eee213efbdc79855e87731326e261b157",
    "format": 1
   },
   {
@@ -627,7 +613,7 @@
    "name": "molecule/kvm/molecule.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "67aecea1a5d1346e906da991aa2d54571ed917c6f5c6559fdac9597648fb9be9",
+   "chksum_sha256": "8dc2d375e1b3c9405cbef40d70428ab127c139a5f7f5fa71fce4e9c16c47ac10",
    "format": 1
   },
   {
@@ -641,28 +627,21 @@
    "name": "molecule/kvm/converge.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "c00aed7f4226e15644b88ceea34b141b8dab834bcba6c7f67c1666c24efd9913",
-   "format": 1
-  },
-  {
-   "name": "molecule/kvm/ansible.cfg",
-   "ftype": "file",
-   "chksum_type": "sha256",
-   "chksum_sha256": "92f3ca7e8ed7300f74247461e8789d821ae9d57fa557b2f7bcea778867a1f291",
+   "chksum_sha256": "05340bd40f5c0f58214deccba0b379ca344b9c48d9caef5715207891c23870ae",
    "format": 1
   },
   {
    "name": "molecule/kvm/prepare.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "3d92e6fd1d6b190040f8c8c580ef9730eaeef24c6f10bccfab6e674a49989ac3",
+   "chksum_sha256": "d080e7edcfbcc7f62206e418e357d3c44864fe31a5578c318257ddb8dbaed8c1",
    "format": 1
   },
   {
    "name": ".travis.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "9771da3f714dcf0426fb1444477ca4d3fdea1236c2b26e16702d44da9f33129e",
+   "chksum_sha256": "6ceef09aed6e932d99a73e94b6af875bfcd4cb63bb578ef8e1ce1b16eeab1270",
    "format": 1
   },
   {

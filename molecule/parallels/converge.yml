@@ -6,7 +6,7 @@
   vars:
     secure_logs: False
     kubernetes_allow_pods_on_master: False
-    #kube_firewall_zone: 'internal'
+    # kube_firewall_zone: 'internal'
     standalone_role: False
     skip_hostname_assert: True
     skip_nameserver_assert: True
@@ -17,13 +17,5 @@
     company_realm_password: '123ADMin'
     company_ad_password: '123ADmPass'
     reset_kube: True
-    nfs_mountpoints: # Mountpoints should be configured by the tcharl.ansible_volume (nfs mounts) on the server and client side to be mounted on each node before kubernetes comes in
-      - host: master.osgiliath.test
-        mountpoints:
-          - remote: /var/shared/csi
-            local: /net
-            csi_mount: Yes
-#        kube_alt_names:
-#          - "kubeadm.osgiliath.net"
   roles:
     - role: tcharl.kube_certmanager

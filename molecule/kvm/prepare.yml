@@ -1,103 +1,57 @@
 ---
 - name: Prepare IDM
   hosts:
-    - idm.osgiliath.test
+    - all
   tasks:
     - name: "install fedora ansible prerequisites"
       ansible.builtin.raw: dnf install -y python3 python3-libdnf5
       changed_when: false
       become: true
-    - include_role:
-        name: tcharl.freeipa_server
-      vars:
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
-    - include_role:
-        name: tcharl.ansible_nameserver
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
-
+- name: Prepare IDM
+  hosts:
+    - idm.osgiliath.test
+  roles:
+    - role: tcharl.freeipa_server
+  vars:
+    secure_logs: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
+    company_domain: osgiliath.test
+    company_realm_password: '123ADMin'
+    company_ad_password: '123ADmPass'
 - name: Prepare IPA clients
   hosts:
     - master.osgiliath.test
     - node1.osgiliath.test
-  tasks:
-    - name: "install fedora ansible prerequisites"
-      ansible.builtin.raw: dnf install -y python3 python3-libdnf5
-      changed_when: false
-      become: True
-    - include_role:
-        name: tcharl.ansible_securehost
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
-    - include_role:
-        name: tcharl.ansible_nameserver
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
-
-- name: Prepare NFS server on Master
+  roles:
+    - role: tcharl.ansible_securehost
+  vars:
+    standalone_role: False
+    secure_logs: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
+    company_domain: osgiliath.test
+    company_realm_password: '123ADMin'
+    company_ad_password: '123ADmPass'
+- name: Prepare IPA clients
   hosts:
-    - master.osgiliath.test
-  tasks:
-    - include_role:
-        name: tcharl.nfs_server
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
-
-- name: Prepare NFS client on Node
-  hosts:
-    - node1.osgiliath.test
-  tasks:
-    - include_role:
-        name: tcharl.nfs_client
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
+   - all
+  roles:
+   - role: tcharl.ansible_nameserver
+  vars:
+    standalone_role: False
+    secure_logs: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
+    company_domain: osgiliath.test
+    company_realm_password: '123ADMin'
+    company_ad_password: '123ADmPass'
 
 - name: configure containerization prereq # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
   hosts: # use this order: master should be created before node
@@ -105,51 +59,42 @@
     - node1.osgiliath.test
   roles:
     - role: geerlingguy.containerd
-  become: True
-
-- name: configure swap # Execute master and nodes at the same time: one fact is created by the master and reused by nodes
-  hosts:
-    - master.osgiliath.test
-    - node1.osgiliath.test
+    - role: geerlingguy.swap
   vars:
     swap_file_state: absent
-  roles:
-    - role: geerlingguy.swap
   become: True
 
 - name: Prepare Kubernetes
   hosts:
     - master.osgiliath.test
     - node1.osgiliath.test
-  tasks:
-    - include_role:
-        name: tcharl.ansible_orchestration
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        company_domain: osgiliath.test
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        master_preferred_nic: "ens5"
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
+  roles:
+    - role: tcharl.ansible_orchestration
+  vars:
+    standalone_role: False
+    secure_logs: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    company_domain: osgiliath.test
+    preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
+    master_preferred_nic: "ens6"
+    company_realm_password: '123ADMin'
+    company_ad_password: '123ADmPass'
 
 - name: Install kube cli
   hosts:
     - master.osgiliath.test
-  tasks:
-    - include_role:
-        name: tcharl.ansible_orchestration_cli
-      vars:
-        standalone_role: False
-        secure_logs: False
-        skip_hostname_assert: True
-        skip_nameserver_assert: True
-        preferred_nic: "ens5"
-        idm_preferred_nic: "ens5"
-        master_preferred_nic: "ens5"
-        company_domain: osgiliath.test
-        company_realm_password: '123ADMin'
-        company_ad_password: '123ADmPass'
+  roles:
+    - role: tcharl.ansible_orchestration_cli
+  vars:
+    standalone_role: False
+    secure_logs: False
+    skip_hostname_assert: True
+    skip_nameserver_assert: True
+    preferred_nic: "ens6"
+    idm_preferred_nic: "ens6"
+    master_preferred_nic: "ens6"
+    company_domain: osgiliath.test
+    company_realm_password: '123ADMin'
+    company_ad_password: '123ADmPass'
