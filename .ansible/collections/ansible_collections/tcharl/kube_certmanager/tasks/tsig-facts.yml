@@ -3,7 +3,7 @@
 - name: TSIG-Facts | find ipa-ext.conf
   ansible.builtin.slurp:
     src: /etc/named/ipa-ext.conf
-  delegate_to: "{{ groups[idm_group] | first }}"
+  delegate_to: "{{ groups[idm_group][0] }}"
   register: ipa_ext_file
   become: yes
 
@@ -12,7 +12,7 @@
     msg: "ipa_ext_file: {{ ipa_ext_file['content'] | b64decode }}"
     # verbosity: 2
 
-- name: TSIG-Facts | debug tsig key value
+- name: TSIG-Facts | expose tsig key value
   ansible.builtin.debug:
     msg: "{{ ipa_ext_file['content'] | b64decode | regex_findall('secret \"(.*)\"') | first }}"
   register: tsig_key_value

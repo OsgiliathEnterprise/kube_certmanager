@@ -7,14 +7,17 @@ dependency:
     requirements-file: requirements-collections.yml
 driver:
   name: vagrant
+  # Molecule does not merge lists: override with the full option set.
+  # These become ansible_ssh_common_args in the generated inventory, which
+  # the ssh plugin appends AFTER [ssh_connection] ssh_args from the cfg.
   ssh_connection_options:
-    - '-4'
+    - '-o UserKnownHostsFile=/dev/null'
     - '-o ControlMaster=auto'
     - '-o ControlPersist=1600s'
-#    - '-o ControlPath=/tmp/m-%r@%h-%p'
-    - '-o ServerAliveInterval=30'
-    - '-o ServerAliveCountMax=5'
-    - '-o TCPKeepAlive=yes'
+    - '-o ForwardX11=no'
+    - '-o LogLevel=ERROR'
+    - '-o IdentitiesOnly=yes'
+    - '-o StrictHostKeyChecking=no'
   provider:
     name: libvirt
 platforms:
@@ -63,8 +66,8 @@ platforms:
       - auto_config: true
         network_name: private_network
         type: dhcp
-        #type: static
-        #ip: "192.168.50.6"
+        # type: static
+        # ip: "192.168.50.6"
     groups:
       - ipaclients
       - kube_node
@@ -72,17 +75,14 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_COLLECTIONS_PATH: "${MOLECULE_PROJECT_DIRECTORY}/../community-collections:${HOME}/.ansible/collections:/usr/share/ansible/collections"
-    # ANSIBLE_VERBOSITY: 2
+    ANSIBLE_VERBOSITY: 2
   config_options:
     defaults:
       remote_tmp: /tmp
       forks: 20
       timeout: 60
-    privilege_escalation:
-      become_timeout: 60
     ssh_connection:
       pipelining: true
-      # ssh_args: -4 -o ControlMaster=auto -o ControlPersist=600s
 verifier:
   name: testinfra
   env:
