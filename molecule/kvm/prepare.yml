@@ -79,6 +79,7 @@
     preferred_nic: "ens6"
     idm_preferred_nic: "ens6"
     master_preferred_nic: "ens6"
+    kube_firewall_zone: 'internal'
     company_realm_password: '123ADMin'
     company_ad_password: '123ADmPass'
 
