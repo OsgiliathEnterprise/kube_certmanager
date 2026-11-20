@@ -4,7 +4,7 @@ webhook:
   securePort: 10260
 volumeMounts:
   - name: ca-bundle
-    mountPath: /etc/pki/tls/certs/ca-bundle.crt
+    mountPath: /etc/ssl/certs/ca-bundle.crt
     subPath: ca-bundle.crt
     readOnly: false
 volumes:
