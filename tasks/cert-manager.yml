@@ -23,7 +23,7 @@
 
 - name: Cert-manager | Create the cert-manager ca-bundle configmap
   ansible.builtin.command: |
-    kubectl create configmap ca-bundle --from-file=/etc/pki/tls/certs/ca-bundle.crt -n cert-manager
+    kubectl create configmap ca-bundle --from-file=/etc/ssl/certs/ca-bundle.crt -n cert-manager
   register: result
   changed_when: "'created' in result.stdout"
   failed_when: False

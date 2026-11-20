@@ -16,8 +16,9 @@
 
 - name: Kubernetes | register ipa ca certificate
   ansible.builtin.slurp:
-    src: /etc/pki/tls/certs/ca-bundle.crt
+    src: /etc/ssl/certs/ca-bundle.crt
   register: kube_certmanager_ipa_ca_bundle
+  become: True
 
 - name: Kubernetes | Copy the cert-manager values file
   ansible.builtin.template:
