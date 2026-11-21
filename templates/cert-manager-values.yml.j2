@@ -4,7 +4,7 @@ webhook:
   securePort: 10260
 volumeMounts:
   - name: ca-bundle
-    mountPath: /etc/ssl/certs/ca-bundle.crt
+    mountPath: {{ kube_certmanager_system_crt_bundle_location }}
     subPath: ca-bundle.crt
     readOnly: false
 volumes:

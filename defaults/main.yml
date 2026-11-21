@@ -3,3 +3,4 @@
 kube_firewall_zone: 'internal'
 cert_manager_chart_version: 'v1.20.3'
 cmtcl_version: 'v2.5.0'
+kube_certmanager_system_crt_bundle_location: '/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem'
